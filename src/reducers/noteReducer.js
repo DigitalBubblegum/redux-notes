@@ -3,6 +3,7 @@ const noteReducer = (state = [], action) => {
     case "NEW_NOTE":
       return state.concat(action.payload);
     case "TOGGLE_IMPORTANCE": {
+      console.log('test')
       const id = action.payload.id;
       const noteToChange = state.find((n) => n.id === id);
       const changedNote = {
