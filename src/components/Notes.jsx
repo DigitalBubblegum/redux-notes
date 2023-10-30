@@ -15,6 +15,7 @@ const Notes = () => {
   const dispatch = useDispatch()
    const notes = useSelector(state => {
     if ( state.filter === 'ALL' ) {
+      console.log('allstate',state)
       return state.notes
     }
     return state.filter  === 'IMPORTANT' 
@@ -24,7 +25,7 @@ const Notes = () => {
 
   return(
     <ul>
-      {notes.notes.map(note =>
+      {notes.map(note =>
         <Note
           key={note.id}
           note={note}

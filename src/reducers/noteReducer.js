@@ -1,14 +1,15 @@
-const initialState = {
-  notes: [
-    {
-      content: "reducer defines how redux store works",
-      important: true,
-      id: 1,
-    },
-    { content: "state of store can contain any data", important: false, id: 2 },
-  ],
-  filter: "IMPORTANT",
-};
+const initialState = [
+  {
+    content: 'reducer defines how redux store works',
+    important: true,
+    id: 1,
+  },
+  {
+    content: 'state of store can contain any data',
+    important: false,
+    id: 2,
+  },
+]
 console.log('test',initialState)
 const noteReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,20 +17,20 @@ const noteReducer = (state = initialState, action) => {
       console.log(state)
       return [...state, action.payload]
     case "TOGGLE_IMPORTANCE": {
-      console.log(state)
+      console.log('toggling importance',state)
       const id = action.payload.id;
-      const noteToChange = state.notes.find(n=>n.id === id)
-      console.log('vomit',noteToChange)
+      console.log('id is',id)
+      console.log('notes in state',state)
+      const noteToChange = state.find(n=>n.id === id)
+      console.log('note being changed',noteToChange)
       const changedNote = {
         ...noteToChange,
         important: !noteToChange.important,
       }
-      console.log(changedNote)
-      console.log('as',state.notes)
-      // var notesList = state.notes.map((note) =>
-      //   note.id !== id ? note : changedNote
-      // );
-      var notesList = state.notes.map((note)=>note)
+      console.log('new  note is',changedNote)
+      var notesList = state.map((note) =>
+        note.id !== id ? note : changedNote
+      )
       console.log('modded note list',notesList)
       return notesList
     }
